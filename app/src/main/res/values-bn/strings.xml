@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">তাসবীহ</string>
+    <string name="action_settings">নতুন করে</string>
+    <string name="action_exit">প্রস্থান</string>
+    <string name="re_counting">গণনা পুনরায় শুরু করবেন?</string>
+    <string name="r_u_sure">তুমি কি নিশ্চিত?</string>
+    <string name="toast_re_again">পুনরায় চালু হয়েছে...</string>
+    <string name="toast_restart_again">আদেশ বাতিল করা হয়েছে</string>
+    <string name="ok">হাঁ</string>
+    <string name="cancel">না</string>
+    <string name="new_background">নতুন পটভূমি</string>
+</resources>

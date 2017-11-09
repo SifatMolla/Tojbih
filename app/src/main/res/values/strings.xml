@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Tajbih</string>
+    <string name="action_settings">Reset</string>
+    <string name="action_exit">Exit</string>
+    <string name="re_counting">Restart counting?</string>
+    <string name="r_u_sure">Are you sure?</string>
+    <string name="toast_re_again">Restart again...</string>
+    <string name="toast_restart_again">Order has been canceled</string>
+    <string name="ok">Yes</string>
+    <string name="cancel">No</string>
+    <string name="new_background">New Background</string>
+</resources>

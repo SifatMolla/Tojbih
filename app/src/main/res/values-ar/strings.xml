@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">مجد</string>
+    <string name="action_settings">إعادة تشغيل</string>
+    <string name="action_exit">ىخرج</string>
+    <string name="re_counting">إعادة العد؟</string>
+    <string name="r_u_sure">هل أنت واثق؟</string>
+    <string name="toast_re_again">إعادة تشغيل مرة أخرى...</string>
+    <string name="toast_restart_again">تم إلغاء النظام</string>
+    <string name="ok">نعم فعلا</string>
+    <string name="cancel">لا</string>
+    <string name="new_background">خلفية جديدة</string>
+</resources>
