@@ -8,23 +8,46 @@ import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.view.GravityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Layout;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 
+import java.util.Locale;
+import java.util.logging.LoggingPermission;
+
 public class MainActivity extends AppCompatActivity {
 
      static Button plusOne;
-    static int plusOn=0,saveplusOn=0,ps=0;
+    static int plusOn=0, saveplusOn=0,ps=0;
     ConstraintLayout layout;
 
     Vibrator v;
   static void pu(){
         plusOn=0;
-        plusOne.setText("0");
+      String ppp=""+plusOn;
+
+
+      if (Locale.getDefault().getDisplayLanguage().equals("বাংলা") ){
+          ppp=ppp.replace("9","৯").replace("0","০").replace("1","১").replace("2","২").replace("3","৩").replace("4","৪").replace("5","৫").replace("6","৬").replace("7","৭").replace("8","৮");
+          plusOne.setGravity(-1);
+          plusOne.setText(ppp);
+      }else if(Locale.getDefault().getDisplayLanguage().equals("العربية") ){
+          ppp=ppp.replace("0","٠").replace("1","١").replace("2","٢").replace("3","٣").replace("4","٤").replace("5","٥").replace("6","٦").replace("7","٧").replace("8","٨").replace("9","٩");
+          plusOne.setGravity(99);
+          plusOne.setText(ppp);
+
+      }else {
+          plusOne.setGravity(-1);
+          plusOne.setText(ppp);
+
+      }
 
     }
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +57,10 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
          layout=(ConstraintLayout)findViewById(R.id.background);
         plusOne=(Button)findViewById(R.id.button);
-        plusOne.setText("0");
+        putTextONplusOne(0);
+
+
+
 
     }
 
@@ -51,8 +77,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         plusOn=saveplusOn;
-        String equalw=plusOn+"";
-        plusOne.setText(equalw);
+
+        putTextONplusOne(plusOn);
     }
 
     @Override
@@ -80,7 +106,11 @@ public class MainActivity extends AppCompatActivity {
                int image_resid = getApplicationContext().getResources().getIdentifier("ni", "drawable", getApplicationContext().getPackageName());
                plusOne.setBackgroundResource(image_resid);
                ps=1;
-           }else{
+           }else if (ps==1){
+               int image_resid = getApplicationContext().getResources().getIdentifier("kkk", "drawable", getApplicationContext().getPackageName());
+               plusOne.setBackgroundResource(image_resid);
+               ps=2;
+           } else if (ps==2){
                int image_resid = getApplicationContext().getResources().getIdentifier("known", "drawable", getApplicationContext().getPackageName());
                plusOne.setBackgroundResource(image_resid);
                ps=0;
@@ -92,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
         } else if(id==R.id.action_Exit){
 
             plusOn=0;
-            plusOne.setText("0");
+            putTextONplusOne(0);
             finish();
 
             return true;
@@ -111,7 +141,33 @@ public class MainActivity extends AppCompatActivity {
             // Vibrate for 500 milliseconds
             v.vibrate(pattern,-1);
         }
-        String equal=plusOn+"";
-        plusOne.setText(equal);
+
+       putTextONplusOne(plusOn);
     }
+
+    public void putTextONplusOne(int i){
+        String ppp=""+i;
+
+
+
+        if (Locale.getDefault().getDisplayLanguage().equals("বাংলা") ){
+            ppp=ppp.replace("0","০").replace("1","১").replace("2","২").replace("3","৩").replace("4","৪").replace("5","৫").replace("6","৬").replace("7","৭").replace("8","৮").replace("9","৯");
+            plusOne.setGravity(-1);
+            plusOne.setText(ppp);
+        }else if(Locale.getDefault().getDisplayLanguage().equals("العربية") ){
+            ppp=ppp.replace("0","٠").replace("1","١").replace("2","٢").replace("3","٣").replace("4","٤").replace("5","٥").replace("6","٦").replace("7","٧").replace("8","٨").replace("9","٩");
+
+
+
+            plusOne.setGravity(99);
+            plusOne.setText(ppp);
+
+        }else {
+
+           plusOne.setGravity(-1);
+            plusOne.setText(ppp);
+
+        }
+    }
+
 }

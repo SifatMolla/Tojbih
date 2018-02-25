@@ -15,7 +15,7 @@
         android:id="@+id/button"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_gravity="start"
+
         android:layout_marginBottom="0dp"
         android:layout_marginLeft="0dp"
         android:layout_marginRight="0dp"
@@ -26,8 +26,8 @@
         android:onClick="plusOne"
         android:text="0"
 
+        android:layout_gravity="start"
 
-        android:textAlignment="textStart"
 
         android:textColor="@color/colorPrimaryDark"
         android:textSize="80sp"
