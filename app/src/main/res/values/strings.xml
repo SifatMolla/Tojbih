@@ -8,5 +8,6 @@
     <string name="toast_restart_again">Order has been canceled</string>
     <string name="ok">Yes</string>
     <string name="cancel">No</string>
-    <string name="new_background">New Background</string>
+    <string name="new_background">Next Page</string>
+    <string name="last_background">Previous Page</string>
 </resources>

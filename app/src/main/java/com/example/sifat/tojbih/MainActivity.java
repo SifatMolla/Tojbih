@@ -17,6 +17,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.WindowManager;
 import android.widget.Button;
 
 import java.util.Locale;
@@ -25,7 +26,7 @@ import java.util.logging.LoggingPermission;
 public class MainActivity extends AppCompatActivity {
 
      static Button plusOne;
-    static int plusOn=0, saveplusOn=0,ps=0;
+    static int plusOn=0, saveplusOn=0,ps=0,saveps=0;
     ConstraintLayout layout;
 
     Vibrator v;
@@ -54,20 +55,20 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+       setSupportActionBar(toolbar);
          layout=(ConstraintLayout)findViewById(R.id.background);
         plusOne=(Button)findViewById(R.id.button);
         putTextONplusOne(0);
+        putButtonBackground(ps);
 
-
-
+      //  getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
 
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-
+        saveps=ps;
         saveplusOn=plusOn;
 
     }
@@ -77,8 +78,31 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         plusOn=saveplusOn;
+        ps=saveps;
 
         putTextONplusOne(plusOn);
+        putButtonBackground(ps);
+    }
+
+    private void putButtonBackground(int ps) {
+
+        if (ps==1){
+            int image_resid = getApplicationContext().getResources().getIdentifier("ni", "drawable", getApplicationContext().getPackageName());
+            plusOne.setBackgroundResource(image_resid);
+
+        }else if (ps==2){
+            int image_resid = getApplicationContext().getResources().getIdentifier("kkk", "drawable", getApplicationContext().getPackageName());
+            plusOne.setBackgroundResource(image_resid);
+
+        } else if (ps==0){
+            int image_resid = getApplicationContext().getResources().getIdentifier("known", "drawable", getApplicationContext().getPackageName());
+            plusOne.setBackgroundResource(image_resid);
+
+        }else if (ps==3){
+            int image_resid = getApplicationContext().getResources().getIdentifier("salam", "drawable", getApplicationContext().getPackageName());
+            plusOne.setBackgroundResource(image_resid);
+
+        }
     }
 
     @Override
@@ -102,21 +126,32 @@ public class MainActivity extends AppCompatActivity {
 
             return true;
         }else if (id == R.id.action_newBackground) {
-           if (ps==0){
-               int image_resid = getApplicationContext().getResources().getIdentifier("ni", "drawable", getApplicationContext().getPackageName());
-               plusOne.setBackgroundResource(image_resid);
-               ps=1;
-           }else if (ps==1){
-               int image_resid = getApplicationContext().getResources().getIdentifier("kkk", "drawable", getApplicationContext().getPackageName());
-               plusOne.setBackgroundResource(image_resid);
-               ps=2;
-           } else if (ps==2){
-               int image_resid = getApplicationContext().getResources().getIdentifier("known", "drawable", getApplicationContext().getPackageName());
-               plusOne.setBackgroundResource(image_resid);
-               ps=0;
-           }
+
+            if(ps>=0&&ps<3){
+                ps++;
+
+            }else if(ps==3){
+                ps=0;
+            }
 
 
+
+            putButtonBackground(ps);
+
+
+            return true;
+        }else if (id == R.id.action_lastBackground) {
+            putButtonBackground(ps);
+            if(ps>0&&ps<=3){
+                ps--;
+
+            }else if(ps==0){
+                ps=3;
+            }
+
+
+
+            putButtonBackground(ps);
 
             return true;
         } else if(id==R.id.action_Exit){

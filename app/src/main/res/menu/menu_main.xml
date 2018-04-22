@@ -13,6 +13,11 @@
         android:title="@string/new_background"
         app:showAsAction="never" />
     <item
+        android:id="@+id/action_lastBackground"
+        android:orderInCategory="101"
+        android:title="@string/last_background"
+        app:showAsAction="never" />
+    <item
         android:id="@+id/action_Exit"
         android:orderInCategory="101"
         android:title="@string/action_exit"
