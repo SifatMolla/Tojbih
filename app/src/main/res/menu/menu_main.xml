@@ -2,21 +2,33 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.sifat.tojbih.MainActivity">
+
+    <item
+        android:id="@+id/action_full_screen"
+        android:orderInCategory="100"
+        android:icon="@drawable/ic_round_fullscreen_24px"
+        android:title="Full Screen"
+        app:showAsAction="always" />
     <item
         android:id="@+id/action_reset"
         android:orderInCategory="100"
+        android:icon="@drawable/ic_outline_settings_backup_restore_24px"
         android:title="@string/action_settings"
         app:showAsAction="always" />
     <item
-        android:id="@+id/action_newBackground"
-        android:orderInCategory="101"
-        android:title="@string/new_background"
-        app:showAsAction="never" />
-    <item
         android:id="@+id/action_lastBackground"
         android:orderInCategory="101"
+        android:icon="@drawable/ic_round_arrow_back_24px"
         android:title="@string/last_background"
-        app:showAsAction="never" />
+        app:showAsAction="always" />
+    <item
+        android:icon="@drawable/ic_round_arrow_forward_24px"
+        android:id="@+id/action_newBackground"
+        android:orderInCategory="101"
+
+        android:title="@string/new_background"
+        app:showAsAction="always" />
+
     <item
         android:id="@+id/action_Exit"
         android:orderInCategory="101"

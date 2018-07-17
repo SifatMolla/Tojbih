@@ -1,5 +1,6 @@
 package com.example.sifat.tojbih;
 
+import android.annotation.SuppressLint;
 import android.app.DialogFragment;
 import android.content.Context;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Layout;
@@ -26,7 +28,8 @@ import java.util.logging.LoggingPermission;
 public class MainActivity extends AppCompatActivity {
 
      static Button plusOne;
-    static int plusOn=0, saveplusOn=0,ps=0,saveps=0;
+
+    static int plusOn=0, saveplusOn=0,ps=0,saveps=0, fullscreen=0;
     ConstraintLayout layout;
 
     Vibrator v;
@@ -70,6 +73,41 @@ public class MainActivity extends AppCompatActivity {
         super.onStop();
         saveps=ps;
         saveplusOn=plusOn;
+
+    }
+    private void hide() {
+        // Hide UI first
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.hide();
+        }
+
+        layout.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LOW_PROFILE
+                | View.SYSTEM_UI_FLAG_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+        );
+        fullscreen=1;
+
+
+  }
+
+    @SuppressLint("InlinedApi")
+    private void show() {
+
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.show();
+        }
+        // Show the system bar
+    layout.setSystemUiVisibility(View.VISIBLE
+           // | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+    );
+
+
+
 
     }
 
@@ -140,6 +178,12 @@ public class MainActivity extends AppCompatActivity {
 
 
             return true;
+        }else if (id == R.id.action_full_screen) {
+
+        hide();
+
+
+            return true;
         }else if (id == R.id.action_lastBackground) {
             putButtonBackground(ps);
             if(ps>0&&ps<=3){
@@ -205,4 +249,14 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onBackPressed() {
+
+      if(fullscreen==1){
+          show();
+          fullscreen=0;
+      }else {
+        super.onBackPressed();
+      }
+    }
 }
